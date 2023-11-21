@@ -32,7 +32,7 @@ let enemi2Img;
 let enemi3Img;
 
 // physics
-let velocityX = -8; // enime Moving left speed
+let velocityX = -4; // enime Moving left speed
 let velocityY = 0;
 let gravity = 0.4;
 let GameOver = false;
