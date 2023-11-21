@@ -33,9 +33,10 @@ body {
 /* style canvas  */
 #BoxGame {
   background-color: lightgray;
-  border-bottom: 1px solid black;
+  border-bottom: 7px solid rgb(99, 91, 91);
   margin: 0 auto;
   width: 60rem;
   height: 35rem;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
