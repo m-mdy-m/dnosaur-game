@@ -17,15 +17,15 @@ let dino = {
   width: dinoWidth,
   height: dinoHeight,
 };
-// enemi
+// enemi physics
 let enmeiArray = [];
 let enmei1Width = 70;
 let enmei2Width = 100;
 let enemi3Width = 152;
 
-let enemiHeight = 140;
-let enemiX = 700;
-let enemiY = boxHeight - enemiHeight;
+let enemiHeight = 120;
+let enemiX = 950;
+let enemiY = boxHeight - enemiHeight + 15;
 
 let enemi1Img;
 let enemi2Img;
@@ -62,11 +62,13 @@ window.addEventListener("load", () => {
 });
 function update() {
   requestAnimationFrame(update);
+  context.clearRect(0, 0, boxGame.width, boxGame.height);
   // dino
   context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
   //enemi
   for (let i = 0; i < enmeiArray.length; i++) {
     let enemi = enmeiArray[i];
+    enemi.x += velocityX;
     context.drawImage(enemi.img, enemi.x, enemi.y, enemi.width, enemi.height);
   }
 }
