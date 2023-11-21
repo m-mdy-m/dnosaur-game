@@ -32,7 +32,7 @@ let enemi2Img;
 let enemi3Img;
 
 // physics
-let velocityX = -4; // enime Moving left speed
+let velocityX = -8; // enime Moving left speed
 let velocityY = 0;
 let gravity = 0.4;
 let GameOver = false;
@@ -59,20 +59,46 @@ window.addEventListener("load", () => {
 
   requestAnimationFrame(update);
   setInterval(placeEnmei, 1000);
+  document.addEventListener("keydown", moveDino);
 });
 function update() {
   requestAnimationFrame(update);
+  if (GameOver) {
+    return;
+  }
   context.clearRect(0, 0, boxGame.width, boxGame.height);
   // dino
+  velocityY += gravity;
+  dino.y = Math.min(dino.y + velocityY, dionY);
   context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
   //enemi
   for (let i = 0; i < enmeiArray.length; i++) {
     let enemi = enmeiArray[i];
     enemi.x += velocityX;
     context.drawImage(enemi.img, enemi.x, enemi.y, enemi.width, enemi.height);
+    if (detectCollision(dino, enemi)) {
+      GameOver = true;
+      dinoImg.src = "./img/DinpDefault2.png";
+      dinoImg.onload = function () {
+        context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+      };
+    }
+  }
+}
+
+function moveDino(e) {
+  if (GameOver) {
+    return;
+  }
+  if ((e.code === "Space" || e.code === "ArrowUp") && dino.y == dionY) {
+    //Up
+    velocityY = -10;
   }
 }
 function placeEnmei() {
+  if (GameOver) {
+    return;
+  }
   let enemi = {
     img: null,
     x: enemiX,
@@ -97,4 +123,16 @@ function placeEnmei() {
     enemi.width = enmei1Width;
     enmeiArray.push(enemi);
   }
+  if (enmeiArray.length > 5) {
+    enmeiArray.shift();
+  }
+}
+
+function detectCollision(a, b) {
+  return (
+    a.x < a.x + b.width &&
+    a.x + a.width > b.x &&
+    a.y < b.y + b.height &&
+    a.y + a.height > b.y
+  );
 }
