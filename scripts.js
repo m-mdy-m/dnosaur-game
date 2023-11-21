@@ -19,4 +19,7 @@ let dino= {
 }
 window.addEventListener('load',()=>{
     boxGame = document.getElementById('BoxGame')
+    boxGame.height = boxHeight
+    boxGame.width = boxWidth
+    context = boxGame.getContext('2d'); 
 })
