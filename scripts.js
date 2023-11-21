@@ -34,6 +34,9 @@ let enemi3Img;
 // physics
 let velocityX = -8; // enime Moving left speed
 let velocityY = 0;
+let gravity = 0.4;
+let GameOver = false;
+let score = 0;
 window.addEventListener("load", () => {
   boxGame = document.getElementById("BoxGame");
   boxGame.height = boxHeight;
