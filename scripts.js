@@ -78,7 +78,7 @@ function update() {
     context.drawImage(enemi.img, enemi.x, enemi.y, enemi.width, enemi.height);
     if (detectCollision(dino, enemi)) {
       GameOver = true;
-      dinoImg.src = "./img/DinpDefault2.png";
+      dinoImg.src = "./img/DinoDefault.png";
       dinoImg.onload = function () {
         context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
       };
@@ -97,7 +97,7 @@ function moveDino(e) {
   }
   if ((e.code === "Space" || e.code === "ArrowUp") && dino.y == dionY) {
     //Up
-    velocityY = -10;
+    velocityY = -12;
   }
 }
 function placeEnmei() {
@@ -135,7 +135,7 @@ function placeEnmei() {
 
 function detectCollision(a, b) {
   return (
-    a.x < a.x + b.width &&
+    a.x < b.x + b.width &&
     a.x + a.width > b.x &&
     a.y < b.y + b.height &&
     a.y + a.height > b.y
