@@ -19,11 +19,11 @@ let dino = {
 };
 // enemi
 let enmeiArray = [];
-let enmei1Width = 34;
-let enmei2Width = 69;
-let enemi3Width = 102;
+let enmei1Width = 70;
+let enmei2Width = 100;
+let enemi3Width = 152;
 
-let enemiHeight = 70;
+let enemiHeight = 140;
 let enemiX = 700;
 let enemiY = boxHeight - enemiHeight;
 
@@ -42,20 +42,26 @@ window.addEventListener("load", () => {
   dinoImg.onload = function () {
     context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
   };
-
+  
   enemi1Img = new Image();
-  enemi1Img.src = "./DinoDefault2.png";
+  enemi1Img.src = "./img/DinpDefault2.png";
   enemi2Img = new Image();
-  enemi2Img.src = "./DinoDefault2.png";
+  enemi2Img.src = "./img/DinpDefault2.png";
   enemi3Img = new Image();
-  enemi3Img.src = "./DinoDefault2.png";
+  enemi3Img.src = "./img/DinpDefault2.png";
 
   requestAnimationFrame(update);
   setInterval(placeEnmei, 1000);
 });
 function update() {
   requestAnimationFrame(update);
+  // dino
   context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
+  //enemi
+  for (let i = 0; i < enmeiArray.length; i++) {
+    let enemi = enmeiArray[i];
+    context.drawImage(enemi.img, enemi.x, enemi.y, enemi.width, enemi.height);
+  }
 }
 function placeEnmei() {
   let enemi = {
@@ -66,18 +72,20 @@ function placeEnmei() {
     height: enemiHeight,
   };
   let placeEnmeiChange = Math.random();
-  if (placeEnmeiChange > 0.9) { // 10%
+  if (placeEnmeiChange > 0.9) {
+    // 10%
     enemi.img = enemi3Img;
     enemi.width = enemi3Width;
     enmeiArray.push(enemi);
-  } else if (placeEnmeiChange > 0.7) { //30%
+  } else if (placeEnmeiChange > 0.7) {
+    //30%
     enemi.img = enemi2Img;
     enemi.width = enmei2Width;
     enmeiArray.push(enemi);
-}else if(placeEnmeiChange > .50) {// 50%
+  } else if (placeEnmeiChange > 0.5) {
+    // 50%
     enemi.img = enemi1Img;
     enemi.width = enmei1Width;
     enmeiArray.push(enemi);
-}
-
+  }
 }
