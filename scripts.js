@@ -30,6 +30,10 @@ let enemiY = boxHeight - enemiHeight;
 let enemi1Img;
 let enemi2Img;
 let enemi3Img;
+
+// physics
+let velocityX = -8; // enime Moving left speed
+let velocityY = 0;
 window.addEventListener("load", () => {
   boxGame = document.getElementById("BoxGame");
   boxGame.height = boxHeight;
@@ -42,7 +46,7 @@ window.addEventListener("load", () => {
   dinoImg.onload = function () {
     context.drawImage(dinoImg, dino.x, dino.y, dino.width, dino.height);
   };
-  
+
   enemi1Img = new Image();
   enemi1Img.src = "./img/DinpDefault2.png";
   enemi2Img = new Image();
